@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sanket khese| Computer Engineer </title>
+
+<!-- Bootstrap 5 CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FAF7F2;
+    --ink:#1B2430;
+    --ink-soft:#2A3543;
+    --rust:#D9622B;
+    --teal:#2E7D6B;
+    --muted:#6B7280;
+    --line:#E4DFD5;
+    --font-display:'Space Grotesk', sans-serif;
+    --font-body:'Inter', sans-serif;
+    --font-mono:'JetBrains Mono', monospace;
+  }
+
+  *{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+
+  h1,h2,h3,.display-font{ font-family:var(--font-display); letter-spacing:-0.01em; }
+  .mono{ font-family:var(--font-mono); }
+
+  a{ text-decoration:none; }
+
+  /* ---------- NAV ---------- */
+  .navbar{
+    background:rgba(250,247,242,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .navbar-brand{
+    font-family:var(--font-mono);
+    font-weight:600;
+    color:var(--ink) !important;
+  }
+  .navbar-brand .dot{ color:var(--rust); }
+  .nav-link{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--ink) !important;
+    margin:0 0.4rem;
+    opacity:0.75;
+  }
+  .nav-link:hover{ opacity:1; color:var(--rust) !important; }
+  .btn-resume{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    border:1px solid var(--ink);
+    color:var(--ink);
+    padding:0.4rem 0.9rem;
+    border-radius:2px;
+  }
+  .btn-resume:hover{ background:var(--ink); color:var(--paper); }
+
+  /* ---------- SECTION LABELS ---------- */
+  .section-label{
+    font-family:var(--font-mono);
+    font-size:0.8rem;
+    color:var(--rust);
+    letter-spacing:0.02em;
+    margin-bottom:0.5rem;
+    display:flex;
+    align-items:center;
+    gap:0.5rem;
+  }
+  .section-label::before{ content:"$"; opacity:0.5; }
+  section{ padding:5.5rem 0; }
+  .section-title{ font-size:2rem; font-weight:600; margin-bottom:2.5rem; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    background:var(--ink);
+    color:var(--paper);
+    padding:6rem 0 5rem;
+    position:relative;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background-image:radial-gradient(circle at 1px 1px, rgba(255,255,255,0.045) 1px, transparent 0);
+    background-size:22px 22px;
+    pointer-events:none;
+  }
+  .hero .eyebrow{
+    font-family:var(--font-mono);
+    color:var(--teal);
+    font-size:0.85rem;
+    margin-bottom:0.75rem;
+  }
+  .hero h1{
+    font-size:clamp(2.1rem, 4.5vw, 3.3rem);
+    font-weight:700;
+    line-height:1.1;
+    margin-bottom:1rem;
+  }
+  .hero h1 span{ color:var(--rust); }
+  .hero p.lede{
+    color:#C7CDD6;
+    font-size:1.05rem;
+    max-width:34rem;
+    margin-bottom:2rem;
+  }
+  .btn-primary-rust{
+    background:var(--rust);
+    border:none;
+    color:#fff;
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    padding:0.65rem 1.3rem;
+    border-radius:2px;
+  }
+  .btn-primary-rust:hover{ background:#c1551f; color:#fff; }
+  .btn-outline-paper{
+    border:1px solid #4A5568;
+    color:var(--paper);
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    padding:0.65rem 1.3rem;
+    border-radius:2px;
+  }
+  .btn-outline-paper:hover{ border-color:var(--paper); color:var(--paper); background:rgba(255,255,255,0.06); }
+
+  /* terminal window */
+  .terminal{
+    background:var(--ink-soft);
+    border-radius:8px;
+    border:1px solid #3A4554;
+    box-shadow:0 20px 50px rgba(0,0,0,0.35);
+    overflow:hidden;
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:6px;
+    padding:0.7rem 0.9rem;
+    background:#222C39;
+    border-bottom:1px solid #3A4554;
+  }
+  .terminal-bar span{ width:11px; height:11px; border-radius:50%; display:inline-block; }
+  .terminal-bar .r{ background:#E0605A; }
+  .terminal-bar .y{ background:#E5B45C; }
+  .terminal-bar .g{ background:#6FBF8B; }
+  .terminal-bar .fname{
+    font-family:var(--font-mono); font-size:0.75rem; color:#8C97A6; margin-left:0.6rem;
+  }
+  .terminal-body{
+    font-family:var(--font-mono);
+    font-size:0.88rem;
+    color:#D7DCE2;
+    padding:1.3rem 1.2rem;
+    min-height:230px;
+    line-height:1.65;
+  }
+  .terminal-body .prompt{ color:var(--teal); }
+  .terminal-body .path{ color:#8C97A6; }
+  .terminal-body .out{ color:#D7DCE2; }
+  .terminal-body .key{ color:var(--rust); }
+  .cursor{
+    display:inline-block; width:8px; height:1.1em; background:var(--paper);
+    vertical-align:text-bottom; animation:blink 1s step-end infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  /* ---------- ABOUT ---------- */
+  .about-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:2rem;
+  }
+  .stat{
+    font-family:var(--font-display);
+    font-size:1.8rem;
+    font-weight:700;
+    color:var(--ink);
+  }
+  .stat-label{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    color:var(--muted);
+  }
+
+  /* ---------- SKILLS ---------- */
+  .skills-window{
+    background:var(--ink);
+    border-radius:8px;
+    padding:1.8rem 1.8rem 1.2rem;
+    color:var(--paper);
+  }
+  .skill-row{ margin-bottom:1.15rem; }
+  .skill-row .top{
+    display:flex; justify-content:space-between;
+    font-family:var(--font-mono); font-size:0.82rem; margin-bottom:0.4rem;
+  }
+  .skill-row .top .name{ color:var(--paper); }
+  .skill-row .top .pct{ color:#8C97A6; }
+  .skill-bar{
+    height:6px; background:#2A3543; border-radius:3px; overflow:hidden;
+  }
+  .skill-bar i{ display:block; height:100%; background:var(--teal); border-radius:3px; }
+  .skill-bar i.rust{ background:var(--rust); }
+
+  .tag{
+    font-family:var(--font-mono);
+    font-size:0.75rem;
+    border:1px solid var(--line);
+    color:var(--ink);
+    padding:0.25rem 0.6rem;
+    border-radius:20px;
+    display:inline-block;
+    margin:0 0.35rem 0.35rem 0;
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-card{
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:8px;
+    overflow:hidden;
+    height:100%;
+    transition:transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .proj-card:hover{ transform:translateY(-4px); box-shadow:0 14px 30px rgba(27,36,48,0.1); }
+  .proj-tab{
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+    background:#F1ECE2;
+    color:var(--muted);
+    padding:0.55rem 1rem;
+    border-bottom:1px solid var(--line);
+  }
+  .proj-tab .file{ color:var(--ink); }
+  .proj-body{ padding:1.4rem; }
+  .proj-body h3{ font-size:1.1rem; margin-bottom:0.6rem; }
+  .proj-body p{ color:var(--muted); font-size:0.92rem; margin-bottom:1rem; }
+  .proj-links a{
+    font-family:var(--font-mono); font-size:0.8rem; color:var(--ink);
+    margin-right:1rem; border-bottom:1px solid var(--ink);
+  }
+  .proj-links a:hover{ color:var(--rust); border-color:var(--rust); }
+
+  /* ---------- TIMELINE ---------- */
+  .timeline{ border-left:2px solid var(--line); margin-left:0.4rem; }
+  .timeline-item{ position:relative; padding:0 0 2rem 1.6rem; }
+  .timeline-item::before{
+    content:""; position:absolute; left:-7px; top:4px;
+    width:12px; height:12px; border-radius:50%;
+    background:var(--paper); border:2px solid var(--rust);
+  }
+  .timeline-item .when{ font-family:var(--font-mono); font-size:0.78rem; color:var(--muted); }
+  .timeline-item h4{ font-size:1.05rem; margin:0.2rem 0 0.3rem; }
+  .timeline-item p{ color:var(--muted); font-size:0.9rem; margin-bottom:0; }
+
+  /* ---------- CONTACT ---------- */
+  .contact-section{ background:var(--ink); color:var(--paper); }
+  .form-control{
+    background:var(--ink-soft);
+    border:1px solid #3A4554;
+    color:var(--paper);
+    font-family:var(--font-body);
+    border-radius:4px;
+  }
+  .form-control:focus{
+    background:var(--ink-soft); color:var(--paper);
+    border-color:var(--teal); box-shadow:0 0 0 0.2rem rgba(46,125,107,0.25);
+  }
+  .form-control::placeholder{ color:#7C8696; }
+  .form-label{ font-family:var(--font-mono); font-size:0.78rem; color:#A9B1BC; }
+
+  .contact-link{
+    display:flex; align-items:center; gap:0.7rem;
+    color:var(--paper); font-family:var(--font-mono); font-size:0.92rem;
+    padding:0.6rem 0; border-bottom:1px solid #2A3543;
+  }
+  .contact-link i{ color:var(--rust); }
+  .contact-link:hover{ color:var(--teal); }
+
+  footer{
+    background:var(--ink); color:#7C8696;
+    font-family:var(--font-mono); font-size:0.8rem;
+    border-top:1px solid #2A3543;
+    padding:1.5rem 0;
+  }
+
+  /* reveal on scroll */
+  .reveal{ opacity:0; transform:translateY(16px); transition:opacity 0.6s ease, transform 0.6s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal{ opacity:1; transform:none; transition:none; }
+    .cursor{ animation:none; }
+  }
+
+  @media (max-width: 767px){
+    section{ padding:3.5rem 0; }
+    .terminal-body{ min-height:200px; font-size:0.82rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="navbar navbar-expand-lg sticky-top py-3">
+  <div class="container">
+    <a class="navbar-brand" href="#top">sanketkhese<span class="dot">.</span>dev</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <div class="d-flex flex-lg-row flex-column align-items-lg-center gap-1 gap-lg-0">
+        <a class="nav-link" href="#about">about</a>
+        <a class="nav-link" href="#skills">skills</a>
+        <a class="nav-link" href="#projects">projects</a>
+        <a class="nav-link" href="#timeline">timeline</a>
+        <a class="nav-link" href="#contact">contact</a>
+        <a class="btn-resume ms-lg-3 mt-2 mt-lg-0"
+   href="resume.pdf"
+   target="_blank">
+   View Resume
+</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="top">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6">
+        <h1>Sanket <span>Khese</span><br>builds with Java &amp; solves with DSA.</h1>
+        <p class="lede">
+Computer Engineering student passionate about building practical software solutions. Experienced in developing web-based applications, database-driven systems, and continuously improving problem-solving skills through real-world projects.
+</p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="#projects" class="btn-primary-rust">View Projects →</a>
+          <a href="#contact" class="btn-outline-paper">Get In Touch</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="r"></span><span class="y"></span><span class="g"></span>
+            
+          </div>
+          <div class="terminal-body" id="typedTerminal"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="container">
+   
+    <h2 class="section-title reveal">About Me</h2>
+    <div class="row g-4">
+      <div class="col-lg-7 reveal">
+        <div class="about-card h-100">
+          <p style="font-size:1.02rem; line-height:1.75;">
+  I am a Computer Engineering student passionate about designing and developing software solutions that address real-world challenges. My technical interests include Java development, web technologies, database systems, and software engineering principles.
+</p>
+
+<p style="font-size:1.02rem; line-height:1.75; margin-bottom:0;">
+  Through academic and personal projects, I have developed practical experience in building management systems, working with databases, and creating user-friendly applications. I enjoy learning new technologies, exploring innovative ideas, and continuously enhancing my development skills to build efficient and scalable solutions.
+</p>
+        </div>
+      </div>
+      <div class="col-lg-5 reveal">
+        <div class="row g-3 h-100">
+          <div class="col-6">
+            <div class="about-card text-center h-100 d-flex flex-column justify-content-center">
+              <div class="stat">100+</div>
+              <div class="stat-label">DSA PROBLEMS SOLVED</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card text-center h-100 d-flex flex-column justify-content-center">
+              <div class="stat">2</div>
+              <div class="stat-label">PROJECTS BUILT</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card text-center h-100 d-flex flex-column justify-content-center">
+              <div class="stat">3</div>
+              <div class="stat-label">LANGUAGES — JAVA / JS / PYTHON </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="about-card text-center h-100 d-flex flex-column justify-content-center">
+              <div class="stat">2027</div>
+              <div class="stat-label">GRADUATION YEAR</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SKILLS ============ -->
+<section id="skills" style="background:#F3EFE6;">
+  <div class="container">
+    <h2 class="section-title reveal">Skills</h2>
+    <div class="row g-4">
+      <div class="col-lg-7 reveal">
+        <div class="skills-window">
+          <div class="skill-row">
+            <div class="top"><span class="name">Java</span><span class="pct">85%</span></div>
+            <div class="skill-bar"><i style="width:85%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="top"><span class="name">HTML / CSS / Bootstrap</span><span class="pct">75%</span></div>
+            <div class="skill-bar"><i style="width:75%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="top"><span class="name">JavaScript</span><span class="pct">65%</span></div>
+            <div class="skill-bar"><i class="rust" style="width:65%"></i></div>
+          </div>
+          <div class="skill-row">
+            <div class="top"><span class="name">SQL / Databases</span><span class="pct">60%</span></div>
+            <div class="skill-bar"><i style="width:60%"></i></div>
+          </div>
+          <div class="skill-row mb-0">
+            <div class="top"><span class="name">Git &amp; Linux CLI</span><span class="pct">60%</span></div>
+            <div class="skill-bar"><i class="rust" style="width:70%"></i></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-5 reveal">
+        <h3 class="h6 mono mb-3" style="color:var(--muted);"> tools &amp; concepts</h3>
+        <div>
+          <span class="tag">OOP</span>
+          <span class="tag">REST APIs</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">Eclipse</span>
+          <span class="tag">Tomcat</span>
+          <span class="tag">Git / GitHub</span>
+          <span class="tag">Linux Terminal</span>
+          <span class="tag">VS Code</span>
+          <span class="tag">Postman</span>
+          <span class="tag">Bootstrap 5</span>
+          <span class="tag">DSA Patterns</span>
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROJECTS ============ -->
+<section id="projects">
+  <div class="container">
+    
+    <h2 class="section-title reveal">Projects</h2>
+    <div class="row g-4">
+
+    <div class="col-md-6 col-lg-4 reveal">
+  <div class="proj-card">
+    <div class="proj-tab">
+      <span class="file">donation management-system.java</span>
+    </div>
+    <div class="proj-body">
+      <h3>Donation Management System</h3>
+      <p>
+        A platform that enables users to donate items such as clothes,
+        books, food, and other essentials to people in need. The system
+        manages donor information, donation records, and item tracking
+        to ensure an organized donation process.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 col-lg-4 reveal">
+  <div class="proj-card">
+    <div class="proj-tab">
+      <span class="file">travel booking-system.java</span>
+    </div>
+    <div class="proj-body">
+      <h3>Travel Booking System</h3>
+      <p>
+        A travel booking and management platform that allows
+        users to browse destinations, manage bookings,
+        maintain customer records, and track travel schedules.
+      </p>
+    </div>
+  </div>
+</div>
+
+      
+
+
+     
+    </div>
+  </div>
+</section>
+
+<!-- ============ TIMELINE ============ -->
+<section id="timeline" style="background:#F3EFE6;">
+  <div class="container">
+    <h2 class="section-title reveal">Education & Achievements</h2>
+
+    <div class="timeline reveal">
+
+      <div class="timeline-item">
+        <div class="when">2023 — Present</div>
+        <h4>B.Tech Computer Science Engineering in Artificial Intelligence </h4>
+        <p>Currently pursuing Bachelor of Technology in Computer Engineering with a CGPA equivalent to approximately 75%.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2026 — Present</div>
+        <h4>Software Development Internship</h4>
+        <p>Working on real-world software development tasks and gaining practical industry experience.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2025 - 2026</div>
+        <h4>Academic Projects</h4>
+        <p>Developed projects including Donation Management System, Travel Management System, and Student Management System.</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="when">2022</div>
+        <h4>Higher Secondary Education (HSC)</h4>
+        <p>Completed Higher Secondary Education with 61% marks in the Science stream.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section id="contact" class="contact-section">
+  <div class="container">
+   
+    <h2 class="section-title reveal">Let's Connect</h2>
+    <div class="row g-5">
+      <div class="col-lg-5 reveal">
+        <p style="color:#C7CDD6; margin-bottom:1.8rem;">
+          Open to  full-time opportunities. Reach out directly or drop a message — I usually reply within a day.
+        </p>
+        <a href="mailto:sanketkhese86@gmail.com" class="contact-link"><i class="bi bi-envelope-fill"></i> sanketkhese86@gmail.com</a>
+        <a href="tel:+917709659698" class="contact-link"><i class="bi bi-telephone-fill"></i> +917709659698</a>
+        <a href="https://github.com/your-handle" target="_blank" class="contact-link"><i class="bi bi-github"></i> github.com/your-handle</a>
+        <a class="contact-link">
+  <i class="bi bi-geo-alt-fill"></i>
+  Pune, Maharashtra, India
+</a>
+      </div>
+      <div class="col-lg-7 reveal">
+        <form action="https://formsubmit.co/sanketkhese86@gmail.com" method="POST">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label">NAME</label>
+              <input type="text" name="name" class="form-control" placeholder="Your name" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">EMAIL</label>
+              <input type="email" name="email" class="form-control" placeholder="sanketkhese86@gmail.com" required>
+            </div>
+            <div class="col-12">
+              <label class="form-label">MESSAGE</label>
+              <textarea name="message" rows="4" class="form-control" placeholder="Say hello..." required></textarea>
+            </div>
+            <div class="col-12">
+              <button type="submit" class="btn-primary-rust">Send Message →</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex flex-column flex-md-row justify-content-between align-items-center gap-2">
+    <span>© 2026 Sanket — built with Bootstrap 5</span>
+    <span>// last commit: today</span>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  // ---- typing effect in hero terminal ----
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const termEl = document.getElementById('typedTerminal');
+
+ const lines = [
+  { type:'cmd', text:'whoami' },
+  { type:'out', text:'sanket khese — computer engineering student' },
+
+  { type:'cmd', text:'cat skills.txt' },
+  { type:'out', text:'Java · SQL · Web Development . DSA' },
+
+  { type:'cmd', text:'cat projects.txt' },
+  { type:'out', text:'Donation Management System · Travel Management System' },
+
+  { type:'cmd', text:'echo $STATUS' },
+  { type:'out', text:' Currently Working as a Software Development Intern' }
+];
+
+  function renderStatic(){
+    termEl.innerHTML = lines.map(l => {
+      if(l.type === 'cmd'){
+        return `<div><span class="prompt">➜</span> <span class="path">~/sanket</span> <span class="key">$</span> ${l.text}</div>`;
+      }
+      return `<div class="out" style="margin-bottom:0.6rem;">${l.text}</div>`;
+    }).join('') + '<span class="cursor"></span>';
+  }
+
+  async function typeLine(el, text, speed=28){
+    for(let i=0;i<=text.length;i++){
+      el.textContent = text.slice(0,i);
+      await new Promise(r=>setTimeout(r, speed));
+    }
+  }
+
+  async function runTyping(){
+    termEl.innerHTML = '';
+    for(const l of lines){
+      const row = document.createElement('div');
+      if(l.type === 'out'){ row.style.marginBottom = '0.6rem'; row.className = 'out'; }
+      termEl.appendChild(row);
+      if(l.type === 'cmd'){
+        row.innerHTML = `<span class="prompt">➜</span> <span class="path">~/sanket</span> <span class="key">$</span> `;
+        const span = document.createElement('span');
+        row.appendChild(span);
+        await typeLine(span, l.text, 32);
+        await new Promise(r=>setTimeout(r, 250));
+      } else {
+        await typeLine(row, l.text, 14);
+        await new Promise(r=>setTimeout(r, 350));
+      }
+    }
+    const cursor = document.createElement('span');
+    cursor.className = 'cursor';
+    termEl.appendChild(cursor);
+  }
+
+  if(prefersReduced){ renderStatic(); } else { runTyping(); }
+
+  // ---- scroll reveal ----
+  const revealEls = document.querySelectorAll('.reveal');
+  if(prefersReduced){
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold:0.15 });
+    revealEls.forEach(el=>io.observe(el));
+  }
+
+  // ---- active nav link on scroll ----
+  const sections = document.querySelectorAll('section[id], header[id]');
+  const navLinks = document.querySelectorAll('.nav-link');
+  window.addEventListener('scroll', ()=>{
+    let current = '';
+    sections.forEach(sec=>{
+      const top = sec.offsetTop - 90;
+      if(scrollY >= top) current = sec.getAttribute('id');
+    });
+    navLinks.forEach(link=>{
+      link.style.opacity = link.getAttribute('href') === '#'+current ? '1' : '0.75';
+      link.style.color = link.getAttribute('href') === '#'+current ? 'var(--rust)' : 'var(--ink)';
+    });
+  });
+</script>
+
+</body>
+</html>
